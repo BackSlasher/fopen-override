@@ -15,14 +15,15 @@ commands
   if ( $_streq((char *)$rdi, $file_a) )
 
     printf "rsp: %d\n", $rsp
+    set $old = $rsp
     set $rsp = $rsp - $len
 
     printf "rsp: %d\n", $rsp
-    call strcpy($newfile, $rsp)
+    call strcpy($rsp, $file_b)
     printf "rsp: %d\n", $rsp
     printf "%d: %s\n", $rsp,$rsp
 
-    set $rsp = $rsp + $len
+    set $rsp = $old
   end
   continue
 end
