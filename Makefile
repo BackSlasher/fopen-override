@@ -1,7 +1,10 @@
-.PHONY: nslookup
+.PHONY: nslookup python perl
 
 nslookup:
-	gdb --batch -q -x script.gdb --args nslookup 8.8.8.8
+	bash test.sh nslookup 8.8.8.8
 
-test:
-	gdb -batch -q -x script.gdb --args python -c 'print(open("/etc/resolv.conf","r").readlines())'
+python:
+	bash test.sh python -c 'print open("/etc/fstab").read()'
+
+perl:
+	bash test.sh perl -e 'open FILE, "/etc/fstab" or die "a"; print <FILE>;'
